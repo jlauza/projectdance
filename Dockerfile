@@ -1,3 +1,12 @@
+# Build frontend assets using a Node.js image
+FROM node:14 AS asset-builder
+
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+
 # Use the official PHP image
 FROM php:8.1-fpm
 
@@ -8,14 +17,16 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     && docker-php-ext-install pdo pdo_mysql zip \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-    && apt-get clean && rm -rf /var/lib/apt/lists/* \
-    && npm run production
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Set the document root to the public directory of your Laravel app.
-# This is to align with the structure of a typical Laravel app.
+# Set the working directory.
 WORKDIR /var/www/html
-COPY . .
-RUN mv public html
 
-# Expose port 80 for Apache.
-EXPOSE 80
+# Copy built assets from asset-builder
+COPY --from=asset-builder /app/public /var/www/html/public
+
+# Copy the rest of the application
+COPY . .
+
+# You can expose port 9000 for FPM if needed
+EXPOSE 9000
