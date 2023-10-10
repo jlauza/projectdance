@@ -3,11 +3,9 @@ version: '3'
 services:
   projectdance-laravel-app:
     image: projectdance-laravel-app
-    container_name: projectdance-laravel-app
+    container_name: app
     build: .
     restart: always
-    ports:
-      - "8000:80"
     volumes:
       - .:/var/www/html
     environment:
@@ -22,12 +20,12 @@ services:
 
   mysql:
     image: mysql
-    container_name: projectdance-mysql
+    container_name: mysql
     environment:
-      MYSQL_ROOT_PASSWORD: root123
-      MYSQL_DATABASE: projectdance
-      MYSQL_USER: jlauza
-      MYSQL_PASSWORD: root123
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
       - "3306:3306"
     volumes:
@@ -40,9 +38,21 @@ services:
       PMA_HOST: mysql
       PMA_PORT: 3306
     ports:
-      - "8080:80"
+      - "8081:80"
     depends_on:
       - mysql
+      
+  nginx:
+    container_name: webserver-nginx
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    volumes:
+      - .:/var/www/html
+    ports:
+      - "8080:80"
+    depends_on:
+      - projectdance-laravel-app
 
 volumes:
   mysql_data:

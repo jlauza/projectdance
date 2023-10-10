@@ -2,9 +2,13 @@
 FROM node:14 AS asset-builder
 
 WORKDIR /app
+
 COPY package.json package-lock.json ./
+
 RUN npm install
+
 COPY . .
+
 RUN npm run build
 
 # Use the official PHP image
@@ -16,6 +20,7 @@ RUN apt-get update && apt-get install -y \
     unzip \
     libzip-dev \
     libpq-dev \
+    && docker-php-ext-configure pdo_mysql \
     && docker-php-ext-install pdo pdo_mysql zip pdo_pgsql \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
