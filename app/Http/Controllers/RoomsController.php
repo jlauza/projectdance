@@ -22,7 +22,7 @@ class RoomsController extends Controller
         $request->validate([
             'name' => 'required',
         ]);
-        Post::create();
+        Post::create($request->all());
         return redirect()->route('rooms.index')->with('Success', 'Room created successfully.');
     }
 
