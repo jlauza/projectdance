@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Rooms;
 
 class RoomsController extends Controller
 {
@@ -22,7 +23,7 @@ class RoomsController extends Controller
         $request->validate([
             'name' => 'required',
         ]);
-        Post::create($request->all());
+        Rooms::create($request->all());
         return redirect()->route('rooms.index')->with('Success', 'Room created successfully.');
     }
 
