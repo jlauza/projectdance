@@ -1,0 +1,1 @@
+resources/views/rooms/index.blade.php
