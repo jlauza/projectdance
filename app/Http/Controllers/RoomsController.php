@@ -12,7 +12,8 @@ class RoomsController extends Controller
      */
     public function index()
     {
-        //
+        $rooms = Rooms::all();
+        return view("rooms.index", compact("rooms"));
     }
 
     /**
@@ -32,7 +33,17 @@ class RoomsController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $rooms = Rooms::find($id);
+        return view('rooms.show', compact('rooms'));
+    }
+
+    /**
+     * Show the form for editing the specified post.
+     */
+    public function edit($id)
+    {
+        $rooms = Rooms::find($id);
+        return view('rooms.edit', compact('rooms'));
     }
 
     /**
@@ -40,7 +51,13 @@ class RoomsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $rooms = Rooms::find($id);
+        $rooms->update($request->all());
+        return redirect()->route('rooms.index')->with('success','Updated room successfully.');
     }
 
     /**
@@ -48,6 +65,8 @@ class RoomsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $rooms = Rooms::find($id);
+        $rooms->delete();
+        return redirect()->route('rooms.index')->with('success','Deleted room successfully.');
     }
 }
