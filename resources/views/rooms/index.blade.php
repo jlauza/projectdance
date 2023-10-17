@@ -1,1 +1,1 @@
-resources/views/rooms/index.blade.php
+<div id="app"></div>
