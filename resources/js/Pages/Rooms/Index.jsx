@@ -1,3 +1,4 @@
+import * as React from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 
@@ -14,11 +15,16 @@ export default function Rooms({ auth }) {
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6 text-gray-900">You're in Rooms page!</div>
                         <div className="p-6 text-gray-900">
-                            <a href='rooms/edit'>Go to edit page.</a>
+                            <p>Show table list of rooms.</p>
+                        </div>
+                        <div className="p-6 text-gray-900">
+                            <a href="rooms/edit" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                                Go to edit page
+                            </a>                            
                         </div>
                     </div>
                 </div>
-            </div>         
+            </div>
         </AuthenticatedLayout>
     );
 }

@@ -41,6 +41,10 @@ Route::middleware(['auth', 'verified'])->group(function() {
         return Inertia::render('Rooms/Index');
     })->name('rooms');
 
+    Route::get('/rooms/add', function() {
+        return Inertia::render('Rooms/Add');
+    })->name('rooms.store');        
+
     Route::get('/rooms/edit', function() {
         return Inertia::render('Rooms/Edit');
     })->name('rooms.edit');    

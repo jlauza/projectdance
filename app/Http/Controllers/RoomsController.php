@@ -13,7 +13,8 @@ class RoomsController extends Controller
     public function index()
     {
         $rooms =Rooms::orderBy("id","desc")->paginate(10);
-        return view("rooms.index", compact("rooms"));
+        // return view("rooms.index", compact("rooms"));
+        return view('rooms', ['rooms'=> $rooms]);
     }
 
     /**
