@@ -33,8 +33,18 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/rooms', function () {
-    return Inertia::render('Rooms');
+    return Inertia::render('Rooms/Index');
 })->middleware(['auth', 'verified'])->name('rooms');
+
+Route::middleware(['auth', 'verified'])->group(function() {
+    Route::get('/rooms', function() {
+        return Inertia::render('Rooms/Index');
+    })->name('rooms');
+
+    Route::get('/rooms/edit', function() {
+        return Inertia::render('Rooms/Edit');
+    })->name('rooms.edit');    
+});
 
 Route::get('/courses', function () {
     return Inertia::render('Courses');
