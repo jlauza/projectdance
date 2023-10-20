@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Rooms extends Model
 {
     use HasFactory;
+    protected $fillables = [
+        "name", "description"
+    ] ;
 }
