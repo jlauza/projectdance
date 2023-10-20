@@ -6,6 +6,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
+import { Grid, TextField } from '@mui/material';
+
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -19,22 +21,44 @@ export default function RoomsAdd({ open, setOpen }) {
   return (
     <>
       <Dialog
+      fullWidth
         open={open}
         TransitionComponent={Transition}
         keepMounted
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+        <DialogTitle>{"Add new room"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-            Let Google help apps determine location. This means sending anonymous
-            location data to Google, even when no apps are running.
+            <Grid container spacing={1} sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'flex-start'
+            }}>
+                <Grid item>
+                    <TextField
+                        fullWidth
+                        required
+                        label="Name"
+                        size='small'
+                        variant='standard'
+                    />
+                </Grid>
+                <Grid item>
+                    <TextField
+                        fullWidth
+                        label="Description"
+                        size='small'
+                        variant='standard'
+                    />
+                </Grid>
+            </Grid>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
-          <Button onClick={handleClose}>Agree</Button>
+          <Button variant='text' size='small' onClick={handleClose}>Cancel</Button>
+          <Button variant='contained' size='small' onClick={handleClose}>Add</Button>
         </DialogActions>
       </Dialog>
     </>
