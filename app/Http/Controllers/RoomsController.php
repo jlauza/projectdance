@@ -26,7 +26,7 @@ class RoomsController extends Controller
             'name' => 'required',
         ]);
         Rooms::create($request->all());
-        return redirect()->route('rooms.index')->with('Success', 'Room created successfully.');
+        return redirect()->route('rooms.store')->with('Success', 'Room created successfully.');
     }
 
     /**
