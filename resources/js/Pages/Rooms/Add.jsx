@@ -6,7 +6,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
-import { Grid, TextField } from '@mui/material';
+import { Grid, TextField, FilledInput, FormControl  } from '@mui/material';
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -34,32 +34,29 @@ export default function RoomsAdd({ open, setOpen }) {
             <Grid container spacing={1} sx={{
                 display: 'flex',
                 flexDirection: 'column',
-                justifyContent: 'flex-start'
+                justifyContent: 'flex-start',
+                paddingTop: 3
             }}>
-                <Grid item>
-                    <TextField
-                        fullWidth
-                        required
-                        label="Name"
-                        size='small'
-                        variant='standard'
-                    />
-                </Grid>
-                <Grid item>
-                    <TextField
-                        fullWidth
-                        label="Description"
-                        size='small'
-                        variant='standard'
-                    />
-                </Grid>
+                <form action="#" method="POST">
+                    <div class="mb-4">
+                        <input type="text" id="name" name="name" class="w-full p-2 border border-gray-300 rounded-md" placeholder='Name*' />
+                    </div>
+                    <div class="mb-4">
+                        {/* <label for="description" class="block text-gray-700 font-semibold">Description</label> */}
+                        <textarea placeholder='Description' id="description" name="description" class="w-full p-2 border border-gray-300 rounded-md"></textarea>
+                    </div>
+                    <div class="flex justify-end">
+                        <button type="button" class="px-4 py-2 mr-2 bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none" onClick={handleClose}>Cancel</button>
+                        <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none">Submit</button>
+                    </div>
+                </form>
             </Grid>
           </DialogContentText>
         </DialogContent>
-        <DialogActions>
+        {/* <DialogActions>
           <Button variant='text' size='small' onClick={handleClose}>Cancel</Button>
-          <Button variant='contained' size='small' onClick={handleClose}>Add</Button>
-        </DialogActions>
+          <Button variant='contained' size='small' type='submit'>Add</Button>
+        </DialogActions> */}
       </Dialog>
     </>
   );
