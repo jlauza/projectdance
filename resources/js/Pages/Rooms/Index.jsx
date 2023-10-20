@@ -1,7 +1,8 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
+import { linkClasses } from '@mui/material';
 
-export default function Rooms({ auth }) {
+export default function RoomsIndex({ auth, rooms }) {
 
     return (
         <AuthenticatedLayout
@@ -47,22 +48,29 @@ export default function Rooms({ auth }) {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            <input type="checkbox" className="form-checkbox" />
-                                        </td>
-                                        <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            Room A
-                                        </td>
-                                        <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            No description
-                                        </td>
-                                        <td className="text-right">
-                                            <a href="#" className="mr-4">Edit</a>
-                                            <a href="#" className="mr-4">Delete</a>
-                                        </td>
-                                    </tr>
+
+                                    {rooms?.map(room => (
+                                        <tr>
+                                            <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                                <input type="checkbox" className="form-checkbox" />
+                                            </td>
+                                            <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                                {room.name}
+                                            </td>
+                                            <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                                {room.description}
+                                            </td>
+                                            <td className="text-right">
+                                                <a href="#" className="mr-4">Edit</a>
+                                                <a href="#" className="mr-4">Delete</a>
+                                            </td>
+                                        </tr>  
+                                    ))}
+
                                 </tbody>
+                                <tfoot>
+                                    pagination here
+                                </tfoot>
                             </table>
                         </div>
                     </div>

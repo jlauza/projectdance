@@ -32,10 +32,6 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/rooms', function () {
-    return Inertia::render('Rooms/Index');
-})->middleware(['auth', 'verified'])->name('rooms');
-
 Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('/rooms', function() {
         return Inertia::render('Rooms/Index');
