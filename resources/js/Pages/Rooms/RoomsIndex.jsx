@@ -2,7 +2,8 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import { Button, Grid } from '@mui/material';
 import { useState } from 'react';
-import RoomsAdd from './Add';
+import RoomsAdd from './RoomsAdd';
+import RoomsList from './RoomsList';
 
 export default function RoomsIndex({ auth, rooms }) {
 
@@ -25,11 +26,17 @@ export default function RoomsIndex({ auth, rooms }) {
                             <div className="flex justify-between items-center px-6 py-4">
                                 {/* CUSTOM TEMPLATE STARTS HERE */}
 
-                                <RoomsAdd open={open} setOpen={setOpen} />
-                                <Button variant='contained' onClick={handleClickOpen}>
-                                    Add new room
-                                </Button>
-                                
+                                <RoomsAdd open={open} setOpen={setOpen} />                                
+                                <Grid container spacing={2}>
+                                    <Grid item xs={12}>
+                                        <Button variant='contained' onClick={handleClickOpen}>
+                                            Add new room
+                                        </Button>                                        
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <RoomsList />
+                                    </Grid>
+                                </Grid>
 
                                 {/* CUSTOM TEMPLATE ENDS HERE */}
                             </div>

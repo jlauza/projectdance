@@ -34,15 +34,15 @@ Route::get('/dashboard', function () {
 
 Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('/rooms', function() {
-        return Inertia::render('Rooms/Index');
+        return Inertia::render('Rooms/RoomsIndex');
     })->name('rooms');
 
     Route::post('/rooms', function() {
-        return Inertia::render('Rooms/Add');
+        return Inertia::render('Rooms/RoomsAdd');
     })->name('rooms.store');             
 
     Route::get('/rooms/edit', function() {
-        return Inertia::render('Rooms/Edit');
+        return Inertia::render('Rooms/RoomsEdit');
     })->name('rooms/edit');    
 });
 
