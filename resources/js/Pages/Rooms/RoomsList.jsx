@@ -10,8 +10,6 @@ import { Checkbox } from '@mui/material';
 import { Button } from '@mui/base';
 
 export default function RoomsList() {
-  console.log(rooms);
-
   const rooms = [
     {name: 'Room A', description: 'Test 1'},
     {name: 'Room B', description: 'Test 2'},
@@ -37,6 +35,9 @@ export default function RoomsList() {
               key={index}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
+              <TableCell component="th" scope="row">
+              <Checkbox />
+              </TableCell>
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>

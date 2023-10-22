@@ -5,6 +5,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import { Grid  } from '@mui/material';
 import { useForm } from '@inertiajs/react';
+import { redirect } from 'react-router-dom';
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
