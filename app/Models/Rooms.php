@@ -9,6 +9,7 @@ class Rooms extends Model
 {
     use HasFactory;
     protected $fillables = [
-        "name", "description"
+        "name",
+        "description"
     ] ;
 }

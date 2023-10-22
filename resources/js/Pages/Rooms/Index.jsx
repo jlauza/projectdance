@@ -21,8 +21,8 @@ export default function RoomsIndex({ auth, rooms }) {
             <div className="py-5">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <div class="bg-white shadow-md rounded-lg overflow-hidden">
-                            <div class="flex justify-between items-center px-6 py-4">
+                        <div className="bg-white shadow-md rounded-lg overflow-hidden">
+                            <div className="flex justify-between items-center px-6 py-4">
                                 {/* CUSTOM TEMPLATE STARTS HERE */}
 
                                 <RoomsAdd open={open} setOpen={setOpen} />
@@ -39,3 +39,5 @@ export default function RoomsIndex({ auth, rooms }) {
         </AuthenticatedLayout>
     );
 }
+
+

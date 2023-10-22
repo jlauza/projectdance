@@ -1,9 +1,6 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import { Grid  } from '@mui/material';
@@ -24,14 +21,14 @@ export default function RoomsAdd({ open, setOpen }) {
   const handleSubmit = (e) => {
     try {
         e.preventDefault();
-        // method(route('controller'))
         post(route('rooms.store'));
+        setOpen(false);
     } catch (error) {
         console.log(error);
     }
   }
 
-  const handleClose = (e) => {
+  const handleClose = () => {
     setOpen(false);
   };
 
@@ -39,22 +36,21 @@ export default function RoomsAdd({ open, setOpen }) {
     <>
       <Dialog
       fullWidth
-        open={open}
+        open={open || false}
         TransitionComponent={Transition}
-        keepMounted
+        // keepMounted
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
       >
         <DialogTitle>{"Add new room"}</DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-slide-description">
             <Grid container spacing={1} sx={{
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'flex-start',
                 paddingTop: 3
             }}>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} method='post'>
                     <div className="mb-4">
                         <input
                         type="text"
@@ -68,7 +64,7 @@ export default function RoomsAdd({ open, setOpen }) {
                             {errors.name}
                         </span>                          
                     </div>
-                    <div class="mb-4">
+                    <div className="mb-4">
                         <textarea
                             placeholder='Description'
                             value={data.description}
@@ -80,18 +76,13 @@ export default function RoomsAdd({ open, setOpen }) {
                             {errors.description}
                         </span>                            
                     </div>
-                    <div class="flex justify-end">
+                    <div className="flex justify-end">
                         <button type="button" className="px-4 py-2 mr-2 bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none" onClick={handleClose}>Cancel</button>
-                        <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none">Submit</button>
+                        <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none">Add</button>
                     </div>
                 </form>
             </Grid>
-          </DialogContentText>
         </DialogContent>
-        {/* <DialogActions>
-          <Button variant='text' size='small' onClick={handleClose}>Cancel</Button>
-          <Button variant='contained' size='small' type='submit'>Add</Button>
-        </DialogActions> */}
       </Dialog>
     </>
   );
