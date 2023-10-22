@@ -29,6 +29,7 @@ export default function RoomsIndex({ auth, rooms }) {
                                 <Button variant='contained' onClick={handleClickOpen}>
                                     Add new room
                                 </Button>
+                                
 
                                 {/* CUSTOM TEMPLATE ENDS HERE */}
                             </div>
