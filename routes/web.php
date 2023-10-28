@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoomsController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -30,6 +31,24 @@ Route::get('/phpinfo', function() { phpinfo(); });
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware(['auth', 'verified'])->group(function() {
+    Route::get('/rooms', function() {
+        return Inertia::render('Rooms/RoomsIndex');
+    })->name('rooms');
+
+    Route::post('/rooms', function() {
+        return Inertia::render('Rooms/RoomsAdd');
+    })->name('rooms.store');             
+
+    Route::get('/rooms/edit', function() {
+        return Inertia::render('Rooms/RoomsEdit');
+    })->name('rooms/edit');    
+});
+
+Route::get('/courses', function () {
+    return Inertia::render('Courses');
+})->middleware(['auth', 'verified'])->name('courses');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
