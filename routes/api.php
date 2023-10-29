@@ -21,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/rooms', [RoomsController::class, 'index']);
+Route::post('/rooms/add', [RoomsController::class, 'store']);
