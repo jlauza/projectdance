@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -10,11 +11,17 @@ import { Checkbox } from '@mui/material';
 import { Button } from '@mui/base';
 
 export default function RoomsList() {
-  const rooms = [
-    {name: 'Room A', description: 'Test 1'},
-    {name: 'Room B', description: 'Test 2'},
-    {name: 'Room C', description: 'Test 3'}
-  ]
+  const [rooms, setRooms] = useState();
+
+  useEffect(() => {
+    axios.get('/api/rooms').then(
+      response => {
+        setRooms(response.data)
+      }
+    ).catch(error => {
+      console.error('There was an error fetching rooms: ', error);
+    });
+  }, []);
 
   return (
     <TableContainer component={Paper}>
@@ -25,7 +32,7 @@ export default function RoomsList() {
               <Checkbox />
           </TableCell>
             <TableCell align='left'>Room name</TableCell>
-            <TableCell align="right">Description</TableCell>
+            <TableCell align="left">Description</TableCell>
             <TableCell align="right">Actions</TableCell>
           </TableRow>
         </TableHead>

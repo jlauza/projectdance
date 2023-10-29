@@ -10,11 +10,12 @@ class RoomsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $rooms =Rooms::orderBy("id","desc")->paginate(10);
+        // $rooms =Rooms::orderBy("id","desc")->paginate(10);
         // return view("rooms.index", compact("rooms"));
-        return view('Index', ['rooms'=> $rooms]);
+        $rooms = Rooms::all();
+        return response()->json($rooms);
     }
 
     /**
@@ -22,11 +23,11 @@ class RoomsController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-        ]);
-        Rooms::create($request->all());
-        return redirect()->route('rooms.index')->with('Success', 'Room created successfully.');
+    //     $request->validate([
+    //         'name' => 'required',
+    //     ]);
+    //     Rooms::create($request->all());
+    //     return redirect()->route('rooms.index')->with('Success', 'Room created successfully.');
     }
 
     /**
@@ -34,8 +35,8 @@ class RoomsController extends Controller
      */
     public function show(string $id)
     {
-        $rooms = Rooms::find($id);
-        return view('rooms.show', compact('rooms'));
+        // $rooms = Rooms::find($id);
+        // return view('rooms.show', compact('rooms'));
     }
 
     /**
@@ -43,8 +44,8 @@ class RoomsController extends Controller
      */
     public function edit($id)
     {
-        $rooms = Rooms::find($id);
-        return view('rooms.edit', compact('rooms'));
+        // $rooms = Rooms::find($id);
+        // return view('rooms.edit', compact('rooms'));
     }
 
     /**
@@ -52,13 +53,13 @@ class RoomsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $request->validate([
-            'name' => 'required',
-        ]);
+        // $request->validate([
+        //     'name' => 'required',
+        // ]);
 
-        $rooms = Rooms::find($id);
-        $rooms->update($request->all());
-        return redirect()->route('rooms.index')->with('success','Updated room successfully.');
+        // $rooms = Rooms::find($id);
+        // $rooms->update($request->all());
+        // return redirect()->route('rooms.index')->with('success','Updated room successfully.');
     }
 
     /**
@@ -66,8 +67,8 @@ class RoomsController extends Controller
      */
     public function destroy(string $id)
     {
-        $rooms = Rooms::find($id);
-        $rooms->delete();
-        return redirect()->route('rooms.index')->with('success','Deleted room successfully.');
+        // $rooms = Rooms::find($id);
+        // $rooms->delete();
+        // return redirect()->route('rooms.index')->with('success','Deleted room successfully.');
     }
 }

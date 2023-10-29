@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\RoomsController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -43,7 +42,7 @@ Route::middleware(['auth', 'verified'])->group(function() {
 
     Route::get('/rooms/edit', function() {
         return Inertia::render('Rooms/RoomsEdit');
-    })->name('rooms/edit');    
+    })->name('rooms.edit');    
 });
 
 Route::get('/courses', function () {
