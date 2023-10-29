@@ -5,7 +5,7 @@ import { useState } from 'react';
 import RoomsAdd from './RoomsAdd';
 import RoomsList from './RoomsList';
 
-export default function RoomsIndex({ auth, rooms }) {
+export default function RoomsIndex({ auth }) {
 
     const [open, setOpen] = useState(false);
     const handleClickOpen = () => {
