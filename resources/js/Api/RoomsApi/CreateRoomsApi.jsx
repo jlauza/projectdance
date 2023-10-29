@@ -1,23 +1,29 @@
 import axios from 'axios';
-import useSWR from 'swr';
+import useSWR, { mutate } from 'swr';
  
 const fetcher = url => axios.post(url).then(res => res.data);
  
 function CreatetRoomsApi() {
   
-  try {
-    const { data } = useSWR('/api/rooms/add', fetcher);
-    
-    return data;
+  const AddRoom = async () => {
+    // variable for new data
+    // mutate api    
+    try {
+      await axios.post('/api/rooms/add', {
+        // add new data param
+      });
 
-  } catch (error) {
-    console.error(error);
+      mutate('/api/rooms');
+    } catch (error) {
+      console.error('Error in adding new room: ', error);
+
+      // rollback
+      mutate('/api/rooms');
+    }
   }
-  
-  return {
-    data,
-    error
-  }
+
+  return AddRoom;
+
 }
 
 export default CreatetRoomsApi;
