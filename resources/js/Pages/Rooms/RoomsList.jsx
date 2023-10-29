@@ -9,19 +9,10 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Checkbox } from '@mui/material';
 import { Button } from '@mui/base';
+import GetRoomsApi from '@/Api/RoomsApi/GetRoomsApi';
 
 export default function RoomsList() {
-  const [rooms, setRooms] = useState();
-
-  useEffect(() => {
-    axios.get('/api/rooms').then(
-      response => {
-        setRooms(response.data)
-      }
-    ).catch(error => {
-      console.error('There was an error fetching rooms: ', error);
-    });
-  }, []);
+  const {data, error} = GetRoomsApi();
 
   return (
     <TableContainer component={Paper}>
@@ -37,7 +28,7 @@ export default function RoomsList() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rooms?.map((row, index) => (
+          {data?.map((row, index) => (
             <TableRow
               key={index}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
