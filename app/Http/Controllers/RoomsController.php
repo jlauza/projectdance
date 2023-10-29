@@ -12,8 +12,6 @@ class RoomsController extends Controller
      */
     public function index(Request $request)
     {
-        // $rooms =Rooms::orderBy("id","desc")->paginate(10);
-        // return view("rooms.index", compact("rooms"));
         $rooms = Rooms::all();
         return response()->json($rooms);
     }
@@ -23,11 +21,12 @@ class RoomsController extends Controller
      */
     public function store(Request $request)
     {
-    //     $request->validate([
-    //         'name' => 'required',
-    //     ]);
-    //     Rooms::create($request->all());
-    //     return redirect()->route('rooms.index')->with('Success', 'Room created successfully.');
+        $data = $request->validate([
+            'name' => 'required | string | 255',
+        ]);
+
+        $rooms = Rooms::create($data);
+        return response()->json($rooms, 201);
     }
 
     /**
