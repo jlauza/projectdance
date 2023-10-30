@@ -20,5 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/rooms', [RoomsController::class, 'index']);
-Route::post('/rooms/add', [RoomsController::class, 'store']);
+Route::middleware('auth:sanctum')->get('/rooms', [RoomsController::class, 'index']);
+Route::middleware('auth:sanctum')->post('/rooms/add', [RoomsController::class, 'store']);
