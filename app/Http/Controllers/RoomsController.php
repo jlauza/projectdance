@@ -11,7 +11,7 @@ class RoomsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Rooms $rooms)
+    public function index()
     {
         $rooms = Rooms::where('user_id', Auth::id())->get();
         return response()->json($rooms);
