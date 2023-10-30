@@ -6,6 +6,8 @@ import RoomsAdd from './RoomsAdd';
 import RoomsList from './RoomsList';
 
 export default function RoomsIndex({ auth }) {
+    const _user = auth.user;
+    console.log(_user);
 
     const [open, setOpen] = useState(false);
     const handleClickOpen = () => {
@@ -34,7 +36,7 @@ export default function RoomsIndex({ auth }) {
                                         </Button>                                        
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <RoomsList />
+                                        <RoomsList user={_user} />
                                     </Grid>
                                 </Grid>
 

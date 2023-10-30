@@ -9,8 +9,10 @@ import Paper from '@mui/material/Paper';
 import { Button, Checkbox } from '@mui/material';
 import GetRoomsApi from '@/Api/RoomsApi/GetRoomsApi';
 
-export default function RoomsList() {
+export default function RoomsList({ user }) {
   const { data } = GetRoomsApi();
+  console.log(data);
+  console.log(user.id);
 
   return (
     <TableContainer component={Paper}>

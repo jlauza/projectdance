@@ -4,15 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Rooms;
+use Illuminate\Support\Facades\Auth;
 
 class RoomsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(Rooms $rooms)
     {
-        $rooms = Rooms::all();
+        $rooms = Rooms::where('user_id', Auth::id())->get();
         return response()->json($rooms);
     }
 
@@ -36,6 +37,8 @@ class RoomsController extends Controller
     {
         // $rooms = Rooms::find($id);
         // return view('rooms.show', compact('rooms'));
+        $this->authorize('view', Rooms::find($id));
+        return response()->json(Rooms::find($id));
     }
 
     /**
