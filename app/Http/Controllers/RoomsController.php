@@ -11,9 +11,17 @@ class RoomsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($userId)
     {
-        $rooms = Rooms::where('user_id', Auth::id())->get();
+        dd($userId);
+        $user_id = Auth::id();
+
+        if ($userId != $user_id) {
+            return response()->json(['error' => 'Unauthorized'], 401); // or any other response you prefer
+        }
+
+        $rooms = Rooms::where('user_id', $user_id)->get();
+        // $rooms=Rooms::all();
         return response()->json($rooms);
     }
 

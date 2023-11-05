@@ -3,8 +3,8 @@ import useSWR from 'swr';
  
 const fetcher = url => axios.get(url).then(res => res.data);
  
-function GetRoomsApi () {
-  const { data, error } = useSWR(`/api/rooms`, fetcher);
+function GetRoomsApi (user_id) {
+  const { data, error } = useSWR(`/rooms/${user_id}`, fetcher);
   
   return {
     data: data || [],
