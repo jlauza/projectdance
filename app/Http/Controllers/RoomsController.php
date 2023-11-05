@@ -13,7 +13,6 @@ class RoomsController extends Controller
      */
     public function index($userId)
     {
-        dd($userId);
         $user_id = Auth::id();
 
         if ($userId != $user_id) {
@@ -21,7 +20,6 @@ class RoomsController extends Controller
         }
 
         $rooms = Rooms::where('user_id', $user_id)->get();
-        // $rooms=Rooms::all();
         return response()->json($rooms);
     }
 

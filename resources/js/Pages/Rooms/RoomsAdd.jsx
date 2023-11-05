@@ -58,6 +58,16 @@ export default function RoomsAdd({ open, setOpen }) {
                       />                       
                     </div>
                     <div className="mb-4">
+                      <input
+                        type="number"
+                        id="capacity"
+                        name="capacity"
+                        // onChange={(e) => setData('capacity', e.target.value)}
+                        className="w-full p-2 border border-gray-300 rounded-md"
+                        placeholder='Capacity*'
+                      />                       
+                    </div>
+                    <div className="mb-4">
                         <textarea
                             placeholder='Description'
                             value={''}
