@@ -14,11 +14,6 @@ class RoomsController extends Controller
     public function index($userId)
     {
         $user_id = Auth::id();
-
-        if ($userId != $user_id) {
-            return response()->json(['error' => 'Unauthorized'], 401); // or any other response you prefer
-        }
-
         $rooms = Rooms::where('user_id', $user_id)->get();
         return response()->json($rooms);
     }
