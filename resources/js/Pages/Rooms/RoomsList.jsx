@@ -20,7 +20,7 @@ export default function RoomsList({ user }) {
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-          <TableCell>
+          <TableCell width='12px'>
               <Checkbox />
           </TableCell>
             <TableCell align='left'>Room name</TableCell>
@@ -58,7 +58,7 @@ export default function RoomsList({ user }) {
             <TableRow
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
-              <TableCell scope="row">
+              <TableCell colSpan={5} scope="row" align='center'>
                 <Typography variant='p'>No record found.</Typography>
               </TableCell>                  
               </TableRow>          
