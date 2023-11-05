@@ -10,10 +10,13 @@ import { Button, Checkbox, Typography } from '@mui/material';
 import GetRoomsApi from '@/Api/RoomsApi/GetRoomsApi';
 
 export default function RoomsList({ user }) {
-  const user_id = user.id
-  const { data } = GetRoomsApi(user_id);
-  console.log(data);
-  console.log(user.id);
+  const userId = user.id
+  const { rooms, isLoading, isError } = GetRoomsApi(userId);
+  console.log(rooms);
+  console.log(userId);
+
+  if (isError) return <div>Error loading rooms.</div>;
+  if (isLoading) return <div>Loading...</div>;
 
   return (
     <TableContainer component={Paper}>
