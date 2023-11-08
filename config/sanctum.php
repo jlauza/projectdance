@@ -33,7 +33,13 @@ return [
     |
     */
 
-    'guard' => ['web'],
+    'guard' => [
+        'web' => [
+            'driver' => 'sanctum',
+            'provider' => 'users', 
+            'stateful' => explode(',', env('SANCTUM_STATEFUL_DOMAINS')),
+        ]
+    ],
 
     /*
     |--------------------------------------------------------------------------
